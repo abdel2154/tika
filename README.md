@@ -304,6 +304,12 @@ Les workflows d'origine d'Apache Tika (builds complets multi-JDK, Docker) sont d
 
 **Lien vers une exécution réussie :** *(à compléter après le premier push)*
 
+Résultat de cette exécution (Ubuntu, Java 17) :
+- étape « Executer tous les tests » : `Tests run: 814, Failures: 0, Errors: 0, Skipped: 2` puis `BUILD SUCCESS` ;
+- étape PIT : `Generated 321 mutations Killed 307 (96%)`, `Test strength 97%`, puis `BUILD SUCCESS`.
+
+Ces chiffres diffèrent légèrement de nos mesures locales (Windows, Java 25 : 322 mutants, 302 tués, 94 %). Le bytecode compilé n'est pas exactement le même selon la version de Java, d'où un mutant de différence. De plus, certains mutants de `FilenameUtils` liés aux chemins (`resolveWithin`, préfixes Windows) se comportent différemment sous Linux. Les tableaux des sections 5 à 7 reprennent les mesures locales, dont les rapports complets sont dans `tache2-rapports/`.
+
 ---
 
 ## 9. Reproduire
