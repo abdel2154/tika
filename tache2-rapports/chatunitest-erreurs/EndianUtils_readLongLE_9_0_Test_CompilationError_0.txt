@@ -1,0 +1,46 @@
+package org.apache.tika.io;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.EndianUtils;
+import org.apache.tika.io.BufferUnderrunException;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.io.InputStream;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class EndianUtils_readLongLE_9_0_Test {
+
+    @Mock
+    private InputStream inputStream;
+
+    @Test
+    public void testReadLongLE() throws IOException, TikaException {
+        // Arrange
+        when(inputStream.read()).thenReturn(1, 2, 3, 4, 5, 6, 7, 8);
+        // Act
+        long result = EndianUtils.readLongLE(inputStream);
+        // Assert
+        assertEquals(0x0102030405060708L, result);
+    }
+
+    @Test
+    public void testReadLongLE_WithBufferUnderrunException() throws IOException, TikaException {
+        // Arrange
+        when(inputStream.read()).thenReturn(1, 2, 3, 4, 5, 6, 7, -1);
+        // Act & Assert
+        assertThrows(BufferUnderrunException.class, () -> EndianUtils.readLongLE(inputStream));
+    }
+}
+
+--------------------------------------------
+Error in EndianUtils_readLongLE_9_0_Test: line 5 : cannot find symbol
+  symbol:   class BufferUnderrunException
+  location: package org.apache.tika.io
+Error in EndianUtils_readLongLE_9_0_Test: line 36 : cannot find symbol
+  symbol:   class BufferUnderrunException
+  location: class org.apache.tika.io.EndianUtils_readLongLE_9_0_Test

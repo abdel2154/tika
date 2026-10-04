@@ -1,0 +1,39 @@
+name: IFT3913 tache 2 - tests et mutation (tika-core)
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Installer Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Compiler tika-core et ses modules parents
+        run: mvn -B -ntp -pl tika-core -am install -DskipTests -Dcheckstyle.skip -Drat.skip
+
+      - name: Executer tous les tests de tika-core (originaux + generes + manuels)
+        run: mvn -B -ntp -pl tika-core test -Dcheckstyle.skip -Drat.skip
+
+      - name: Analyse de mutation PIT (EndianUtils, FilenameUtils)
+        run: mvn -B -ntp -pl tika-core -Ptache2 test-compile org.pitest:pitest-maven:mutationCoverage -Dcheckstyle.skip -Drat.skip
+
+      - name: Publier les rapports PIT et JaCoCo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapports-tache2
+          path: |
+            tika-core/target/pit-reports/
+            tika-core/target/site/jacoco/

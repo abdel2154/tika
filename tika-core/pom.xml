@@ -119,6 +119,18 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- IFT3913 tache 2 : les tests generes par ChatUniTest importent Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito-junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -321,7 +333,7 @@
     </plugins>
   </reporting>
 
-  <description>This is the core Apache Tika™ toolkit library from which all other modules inherit functionality. It
+  <description>This is the core Apache Tikaâ„¢ toolkit library from which all other modules inherit functionality. It
     also
     includes the core facades for the Tika API.
   </description>
@@ -341,4 +353,76 @@
   <scm>
     <tag>3.0.0-rc1</tag>
   </scm>
+
+  <!-- IFT3913 tache 2 : generation de tests (ChatUniTest + Ollama) et analyse de mutation (PIT).
+       Activer avec : mvn -pl tika-core -Ptache2 ... -->
+  <profiles>
+    <profile>
+      <id>tache2</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.github.ZJU-ACES-ISE</groupId>
+          <artifactId>chatunitest-starter</artifactId>
+          <version>1.5.0</version>
+          <type>pom</type>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.github.zju-aces-ise</groupId>
+            <artifactId>chatunitest-maven-plugin</artifactId>
+            <version>2.1.1</version>
+            <configuration>
+              <!-- modele ouvert execute localement par Ollama (API compatible OpenAI) -->
+              <url>http://localhost:11434/v1/chat/completions</url>
+              <!-- ChatUniTest 2.1.1 n'accepte qu'une liste fixe de noms de modeles :
+                   "codeqwen:v1.5-chat" est un alias Ollama (ollama cp) de qwen2.5-coder:7b -->
+              <model>codeqwen:v1.5-chat</model>
+              <!-- Ollama n'exige pas de cle, mais le plugin en demande une -->
+              <apiKeys>ollama</apiKeys>
+              <testNumber>1</testNumber>
+              <maxRounds>2</maxRounds>
+              <temperature>0.2</temperature>
+              <thread>false</thread>
+              <!-- fichiers temporaires dans target/ (defaut : /tmp/chatunitest-info) -->
+              <tmpOutput>${project.build.directory}/chatunitest-info</tmpOutput>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.30.0</version>
+            <dependencies>
+              <dependency>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-junit5-plugin</artifactId>
+                <version>1.2.3</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <targetClasses>
+                <param>org.apache.tika.io.EndianUtils*</param>
+                <param>org.apache.tika.io.FilenameUtils</param>
+              </targetClasses>
+              <targetTests>
+                <param>${pit.targetTests}</param>
+              </targetTests>
+              <outputFormats>
+                <param>HTML</param>
+                <param>CSV</param>
+              </outputFormats>
+              <timestampedReports>false</timestampedReports>
+              <threads>4</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- par defaut : tous les tests du paquet io ; surcharge avec -Dpit.targetTests=... -->
+        <pit.targetTests>org.apache.tika.io.*</pit.targetTests>
+      </properties>
+    </profile>
+  </profiles>
 </project>

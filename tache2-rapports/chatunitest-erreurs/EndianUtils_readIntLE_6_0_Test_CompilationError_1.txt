@@ -1,0 +1,45 @@
+package org.apache.tika.io;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.EndianUtils;
+import org.apache.tika.io.InputStream;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.BufferUnderflowException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class EndianUtils_readIntLE_6_0_Test {
+
+    @Mock
+    private InputStream inputStream;
+
+    @Test
+    public void testReadIntLE() throws IOException {
+        when(inputStream.read()).thenReturn(1, 2, 3, 4);
+        int result = EndianUtils.readIntLE(inputStream);
+        assertEquals(0x04030201, result);
+    }
+
+    @Test
+    public void testReadIntLEBufferUnderrunException() throws IOException {
+        when(inputStream.read()).thenReturn(1, 2, 3);
+        assertThrows(BufferUnderflowException.class, () -> EndianUtils.readIntLE(inputStream));
+    }
+
+    @Test
+    public void testReadIntLEIOException() throws IOException {
+        when(inputStream.read()).thenThrow(new IOException());
+        assertThrows(IOException.class, () -> EndianUtils.readIntLE(inputStream));
+    }
+}
+
+--------------------------------------------
+Error in EndianUtils_readIntLE_6_0_Test: line 5 : cannot find symbol
+  symbol:   class InputStream
+  location: package org.apache.tika.io

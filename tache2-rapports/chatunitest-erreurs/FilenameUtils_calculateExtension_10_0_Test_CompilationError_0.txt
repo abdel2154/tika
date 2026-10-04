@@ -1,0 +1,119 @@
+package org.apache.tika.io;
+
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.mime.MimeTypes;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.utils.StringUtils;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.tika.extractor.EmbeddedDocumentUtil;
+import org.apache.tika.metadata.TikaCoreProperties;
+
+@ExtendWith(MockitoExtension.class)
+public class FilenameUtils_calculateExtension_10_0_Test {
+
+    @Mock
+    private MimeTypes mimeTypes;
+
+    @Mock
+    private MimeType mimeType;
+
+    @BeforeEach
+    public void setUp() throws MimeTypeException {
+        when(mimeTypes.forName("image/png")).thenReturn(mimeType);
+        when(mimeType.getExtension()).thenReturn("png");
+    }
+
+    @Test
+    public void testCalculateExtensionWithMimeType() throws MimeTypeException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String defaultValue = ".bin";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+        verify(mimeTypes).forName("image/png");
+        verify(mimeType).getExtension();
+    }
+
+    @Test
+    public void testCalculateExtensionWithNullMimeType() {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, null);
+        String defaultValue = ".bin";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithInvalidMimeType() throws MimeTypeException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/ocr-png");
+        String defaultValue = ".bin";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+        verify(mimeTypes).forName("image/ocr-png");
+        verify(mimeType).getExtension();
+    }
+
+    @Test
+    public void testCalculateExtensionWithEmptyMimeType() throws MimeTypeException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "");
+        String defaultValue = ".bin";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithBlankMimeType() throws MimeTypeException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, " ");
+        String defaultValue = ".bin";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithNullDefaultValue() {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String defaultValue = null;
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithEmptyDefaultValue() {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String defaultValue = "";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithBlankDefaultValue() {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String defaultValue = " ";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+    }
+}
+
+--------------------------------------------
+Error in FilenameUtils_calculateExtension_10_0_Test: line 54 : reference to set is ambiguous
+  both method set(org.apache.tika.metadata.Property,java.util.Date) in org.apache.tika.metadata.Metadata and method set(org.apache.tika.metadata.Property,java.util.Calendar) in org.apache.tika.metadata.Metadata match
