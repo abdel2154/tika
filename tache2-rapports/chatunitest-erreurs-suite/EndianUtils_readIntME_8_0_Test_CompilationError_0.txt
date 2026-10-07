@@ -1,0 +1,42 @@
+package org.apache.tika.io;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.EndianUtils;
+import org.apache.tika.io.BufferUnderrunException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+public class EndianUtils_readIntME_8_0_Test {
+
+    private EndianUtils endiannessUtils;
+
+    @BeforeEach
+    public void setUp() {
+        endiannessUtils = new EndianUtils();
+    }
+
+    @Test
+    public void testReadIntME() throws IOException, TikaException {
+        InputStream inputStream = new ByteArrayInputStream(new byte[] { 0x01, 0x02, 0x03, 0x04 });
+        int result = endiannessUtils.readIntME(inputStream);
+        assertEquals(0x02010403, result);
+    }
+
+    @Test
+    public void testReadIntME_WithBufferUnderrunException() throws IOException {
+        InputStream inputStream = new ByteArrayInputStream(new byte[] { 0x01, 0x02 });
+        assertThrows(BufferUnderrunException.class, () -> endiannessUtils.readIntME(inputStream));
+    }
+}
+
+--------------------------------------------
+Error in EndianUtils_readIntME_8_0_Test: line 8 : cannot find symbol
+  symbol:   class BufferUnderrunException
+  location: package org.apache.tika.io

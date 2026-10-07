@@ -1,0 +1,133 @@
+package org.apache.tika.io;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypes;
+import org.apache.tika.utils.StringUtils;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.tika.extractor.EmbeddedDocumentUtil;
+import org.apache.tika.metadata.TikaCoreProperties;
+import org.apache.tika.mime.MimeTypeException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class FilenameUtils_calculateExtension_10_0_Test {
+
+    @Mock
+    private MimeTypes mimeTypes;
+
+    @Mock
+    private MimeType mimeType;
+
+    @BeforeEach
+    public void setUp() throws MimeTypeException {
+        when(mimeTypes.forName("image/png")).thenReturn(mimeType);
+        when(mimeType.getExtension()).thenReturn("png");
+    }
+
+    @Test
+    public void testCalculateExtensionWithMimeType() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithEmptyMimeType() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "");
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithNullMetadata() throws IOException {
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(null, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithWhitespaceDefaultValue() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String result = FilenameUtils.calculateExtension(metadata, " ");
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithNullDefaultValue() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String result = FilenameUtils.calculateExtension(metadata, null);
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithWhitespaceMimeType() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, " image/png ");
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithInvalidMimeType() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "invalid/mime");
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithEmptyDefaultValue() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        String result = FilenameUtils.calculateExtension(metadata, "");
+        assertEquals("png", result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithNullMimeType() throws IOException {
+        Metadata metadata = new Metadata();
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(defaultValue, result);
+    }
+
+    @Test
+    public void testCalculateExtensionWithNoExtension() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(Metadata.CONTENT_TYPE, "application/octet-stream");
+        String defaultValue = "default.ext";
+        String result = FilenameUtils.calculateExtension(metadata, defaultValue);
+        assertEquals(".bin", result);
+    }
+}
+
+--------------------------------------------
+Error in testCalculateExtensionWithNullDefaultValue(): line 78 : org.opentest4j.AssertionFailedError: expected: <png> but was: <.png>
+Error in testCalculateExtensionWithInvalidMimeType(): line 96 : org.opentest4j.AssertionFailedError: expected: <default.ext> but was: <.bin>
+Error in testCalculateExtensionWithEmptyMimeType(): line 55 : org.opentest4j.AssertionFailedError: expected: <default.ext> but was: <.bin>
+Error in testCalculateExtensionWithMimeType(): line 46 : org.opentest4j.AssertionFailedError: expected: <png> but was: <.png>
+Error in testCalculateExtensionWithEmptyDefaultValue(): line 104 : org.opentest4j.AssertionFailedError: expected: <png> but was: <.png>
+Error in testCalculateExtensionWithWhitespaceDefaultValue(): line 70 : org.opentest4j.AssertionFailedError: expected: <png> but was: <.png>
+Error in testCalculateExtensionWithWhitespaceMimeType(): line 87 : org.opentest4j.AssertionFailedError: expected: <png> but was: <.png>
+Error in testCalculateExtensionWithNullMetadata(): line 61 : java.lang.NullPointerException: Cannot invoke "org.apache.tika.metadata.Metadata.get(org.apache.tika.metadata.Property)" because "metadata" is null

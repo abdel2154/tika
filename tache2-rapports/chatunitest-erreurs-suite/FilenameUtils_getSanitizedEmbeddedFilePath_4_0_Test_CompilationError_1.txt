@@ -1,0 +1,122 @@
+package org.apache.tika.io;
+
+import org.apache.tika.io.FilenameUtils;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.metadata.TikaCoreProperties;
+import org.apache.tika.utils.StringUtils;
+import org.junit.jupiter.api.function.Executable;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.apache.tika.extractor.EmbeddedDocumentUtil;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.mime.MimeTypes;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class FilenameUtils_getSanitizedEmbeddedFilePath_4_0_Test {
+
+    private FilenameUtils filenameUtils;
+
+    @BeforeEach
+    public void setUp() {
+        filenameUtils = new FilenameUtils();
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withValidPath() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/file.txt");
+        String defaultExtension = "txt";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("path/to/file.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withNullPath() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, null);
+        String defaultExtension = "txt";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withBlankPath() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "   ");
+        String defaultExtension = "txt";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withProtocol() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/file.txt");
+        String defaultExtension = "txt";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("path/to/file.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withInvalidProtocol() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "ftp://example.com/path/to/file.txt");
+        String defaultExtension = "txt";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("path/to/file.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withEmptyExtension() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/file");
+        String defaultExtension = "";
+        int maxLength = 100;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("path/to/file.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withLongPath() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/very/long/path/to/file.txt");
+        String defaultExtension = "txt";
+        int maxLength = 10;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("very/long/path/to/file.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withLongFileName() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/very/long/filename.txt");
+        String defaultExtension = "txt";
+        int maxLength = 10;
+        String result = filenameUtils.getSanitizedEmbeddedFilePath(metadata, defaultExtension, maxLength);
+        assertEquals("very/long/filename.txt", result);
+    }
+
+    @Test
+    public void testGetSanitizedEmbeddedFilePath_withLongExtension() throws IOException {
+        Metadata metadata = new Metadata();
+        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, "http://example.com/path/to/file.txt");
+    }
+}
+
+--------------------------------------------
+Error in FilenameUtils_getSanitizedEmbeddedFilePath_4_0_Test: line 46 : reference to set is ambiguous
+  both method set(org.apache.tika.metadata.Property,java.util.Date) in org.apache.tika.metadata.Metadata and method set(org.apache.tika.metadata.Property,java.util.Calendar) in org.apache.tika.metadata.Metadata match

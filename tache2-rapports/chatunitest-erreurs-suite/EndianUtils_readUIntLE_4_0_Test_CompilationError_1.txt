@@ -1,0 +1,52 @@
+package org.apache.tika.io;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.EndianUtils;
+import org.apache.tika.io.InputStreams;
+import org.junit.jupiter.api.function.Executable;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EndianUtils_readUIntLE_4_0_Test {
+
+    @Test
+    public void testReadUIntLE() throws IOException {
+        // Arrange
+        InputStream inputStream = new ByteArrayInputStream(new byte[] { 0x01, 0x02, 0x03, 0x04 });
+        EndianUtils endianUtils = new EndianUtils();
+        // Act
+        long result = endianUtils.readUIntLE(inputStream);
+        // Assert
+        assertEquals(0x04030201L, result);
+    }
+
+    @Test
+    public void testReadUIntLE_WithBufferUnderrunException() throws IOException {
+        // Arrange
+        InputStream inputStream = new ByteArrayInputStream(new byte[] { 0x01, 0x02, 0x03 });
+        EndianUtils endianUtils = new EndianUtils();
+        // Act & Assert
+        assertThrows(BufferUnderrunException.class, () -> endianUtils.readUIntLE(inputStream));
+    }
+
+    @Test
+    public void testReadUIntLE_WithNegativeByte() throws IOException {
+        // Arrange
+        InputStream inputStream = new ByteArrayInputStream(new byte[] { -1, -2, -3, -4 });
+        EndianUtils endianUtils = new EndianUtils();
+        // Act & Assert
+        assertThrows(BufferUnderrunException.class, () -> endianUtils.readUIntLE(inputStream));
+    }
+}
+
+--------------------------------------------
+Error in EndianUtils_readUIntLE_4_0_Test: line 5 : cannot find symbol
+  symbol:   class InputStreams
+  location: package org.apache.tika.io

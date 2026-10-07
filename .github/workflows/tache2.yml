@@ -26,8 +26,30 @@ jobs:
       - name: Executer tous les tests de tika-core (originaux + generes + manuels)
         run: mvn -B -ntp -pl tika-core test -Dcheckstyle.skip -Drat.skip
 
+      - name: Executer uniquement les tests ajoutes (generes par ChatUniTest + ecrits a la main)
+        run: mvn -B -ntp -pl tika-core test "-Dtest=*_Test,*ManualTest" -Dsurefire.failIfNoSpecifiedTests=false -Dcheckstyle.skip -Drat.skip
+
       - name: Analyse de mutation PIT (EndianUtils, FilenameUtils)
         run: mvn -B -ntp -pl tika-core -Ptache2 test-compile org.pitest:pitest-maven:mutationCoverage -Dcheckstyle.skip -Drat.skip
+
+      - name: Resume des resultats
+        if: always()
+        run: |
+          R=tika-core/target/surefire-reports
+          compte() { cat $R/TEST-org.apache.tika.io.$1.xml 2>/dev/null | grep -o '<testsuite [^>]*' | grep -o ' tests="[0-9]*"' | grep -o '[0-9]*' | awk '{s+=$1} END {print s+0}'; }
+          CSV=tika-core/target/pit-reports/mutations.csv
+          {
+            echo "## IFT3913 tache 2 - resultats"
+            echo "| Mesure | Valeur |"
+            echo "|---|---|"
+            echo "| Tests generes par ChatUniTest (*_Test) | $(compte '*_Test') |"
+            echo "| Tests ecrits a la main (*ManualTest) | $(compte '*ManualTest') |"
+            if [ -f "$CSV" ]; then
+              echo "| Mutants tues / generes (PIT) | $(grep -c ',KILLED,' $CSV) / $(wc -l < $CSV) |"
+              echo "| EndianUtils tues | $(grep 'EndianUtils' $CSV | grep -c ',KILLED,') / $(grep -c 'EndianUtils' $CSV) |"
+              echo "| FilenameUtils tues | $(grep 'FilenameUtils' $CSV | grep -c ',KILLED,') / $(grep -c 'FilenameUtils' $CSV) |"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publier les rapports PIT et JaCoCo
         if: always()

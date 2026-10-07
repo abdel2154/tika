@@ -18,8 +18,15 @@ package org.apache.tika.io;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.Property;
@@ -112,5 +119,69 @@ public class FilenameUtilsManualTest {
         // chemin trop long, mais la partie nom "abcdefgh" fait exactement 8 : nom seul, non tronque
         assertEquals("abcdefgh.txt", FilenameUtils.getSanitizedEmbeddedFilePath(
                 only(TikaCoreProperties.RESOURCE_NAME_KEY, "dir/abcdefgh.txt"), ".bin", 8));
+    }
+
+    // ---- Tests ajoutes lors de la seconde passe (apres la generation des methodes restantes) ----
+
+    @Test
+    public void testBlankNamePartReturnsNull() {
+        // l'extension ".pdf" est reconnue, mais la partie nom n'est qu'un espace : aucun nom utilisable
+        assertNull(FilenameUtils.getSanitizedEmbeddedFileName(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, " .pdf"), ".bin", 50));
+        assertNull(FilenameUtils.getSanitizedEmbeddedFilePath(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, " .pdf"), ".bin", 50));
+    }
+
+    @Test
+    public void testOnlyRealDriveLettersAreStripped() {
+        // aucune de ces chaines n'est un prefixe de lecteur Windows ("X:" avec X dans A..Z) :
+        // rien ne doit etre retire ; ':' devient '/' et le '/' final est supprime
+        assertEquals("A.bin", FilenameUtils.getSanitizedEmbeddedFilePath(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, "A"), ".bin", 50));
+        assertEquals("AB.bin", FilenameUtils.getSanitizedEmbeddedFilePath(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, "AB"), ".bin", 50));
+        // '@' = 'A' - 1 et '[' = 'Z' + 1 : voisins immediats de l'intervalle A..Z
+        assertEquals("@.bin", FilenameUtils.getSanitizedEmbeddedFilePath(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, "@:"), ".bin", 50));
+        assertEquals("[.bin", FilenameUtils.getSanitizedEmbeddedFilePath(
+                only(TikaCoreProperties.RESOURCE_NAME_KEY, "[:"), ".bin", 50));
+    }
+
+    @Test
+    public void testResolveWithinExistingAndMissingFiles(@TempDir Path dir) throws IOException {
+        // fichier reel a l'interieur du dossier : il est accepte et renvoye tel quel
+        Files.createFile(dir.resolve("inside.txt"));
+        assertEquals(dir.resolve("inside.txt").normalize(),
+                FilenameUtils.resolveWithin(dir, "inside.txt"));
+        // fichier absent : la verification par toRealPath() ne doit pas etre tentee
+        assertEquals(dir.resolve("absent.txt").normalize(),
+                FilenameUtils.resolveWithin(dir, "absent.txt"));
+    }
+
+    @Test
+    public void testResolveWithinRejectsSymlinkEscape(@TempDir Path dir, @TempDir Path outside)
+            throws IOException {
+        Path link = dir.resolve("lien");
+        try {
+            Files.createSymbolicLink(link, outside);
+        } catch (IOException | UnsupportedOperationException e) {
+            // Windows sans privilege : impossible de creer un lien, le test est ignore
+            Assumptions.abort("liens symboliques non disponibles : " + e);
+        }
+        // "lien" est textuellement dans dir, mais pointe hors de dir : il doit etre refuse
+        assertThrows(IOException.class, () -> FilenameUtils.resolveWithin(dir, "lien"));
+    }
+
+    @Test
+    public void testTildeNameKnownDefect() {
+        // DEFAUT DE TIKA : commons-io renvoie une longueur de prefixe > longueur du nom pour "~"
+        // (2) et "~user" (6), et path.substring(prefixLength) leve une exception. Ce test fige
+        // le comportement actuel ; il faudra changer l'oracle quand le defaut sera corrige.
+        assertThrows(StringIndexOutOfBoundsException.class,
+                () -> FilenameUtils.getSanitizedEmbeddedFileName(
+                        only(TikaCoreProperties.RESOURCE_NAME_KEY, "~"), ".bin", 50));
+        assertThrows(StringIndexOutOfBoundsException.class,
+                () -> FilenameUtils.getSanitizedEmbeddedFilePath(
+                        only(TikaCoreProperties.RESOURCE_NAME_KEY, "~user"), ".bin", 50));
     }
 }

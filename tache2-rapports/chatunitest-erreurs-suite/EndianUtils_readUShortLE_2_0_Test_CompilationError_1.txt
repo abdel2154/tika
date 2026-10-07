@@ -1,0 +1,92 @@
+package org.apache.tika.io;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.EndianUtils;
+import org.apache.tika.io.InputStreamWithPosition;
+import org.apache.tika.io.BufferUnderrunException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.InputStream;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EndianUtils_readUShortLE_2_0_Test {
+
+    private EndianUtils endianUtils;
+
+    @BeforeEach
+    public void setUp() {
+        endianUtils = new EndianUtils();
+    }
+
+    @Test
+    public void testReadUShortLE() throws IOException, TikaException {
+        byte[] data = { 0x12, 0x34 };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        int result = endianUtils.readUShortLE(inputStream);
+        assertEquals(0x3412, result);
+    }
+
+    @Test
+    public void testReadUShortLEWithBufferUnderrun() throws IOException, TikaException {
+        byte[] data = { 0x12 };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        assertThrows(BufferUnderrunException.class, () -> endianUtils.readUShortLE(inputStream));
+    }
+
+    @Test
+    public void testReadUShortLEWithNegativeValues() throws IOException, TikaException {
+        byte[] data = { (byte) 0xFF, (byte) 0xFF };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        int result = endianUtils.readUShortLE(inputStream);
+        assertEquals(0xFFFF, result);
+    }
+
+    @Test
+    public void testReadUShortLEWithZeroValues() throws IOException, TikaException {
+        byte[] data = { 0x00, 0x00 };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        int result = endianUtils.readUShortLE(inputStream);
+        assertEquals(0x0000, result);
+    }
+
+    @Test
+    public void testReadUShortLEWithLargeValues() throws IOException, TikaException {
+        byte[] data = { (byte) 0x7F, (byte) 0xFF };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        int result = endianUtils.readUShortLE(inputStream);
+        assertEquals(0xFF7F, result);
+    }
+
+    @Test
+    public void testReadUShortLEWithMixedValues() throws IOException, TikaException {
+        byte[] data = { (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78 };
+        InputStream inputStream = new ByteArrayInputStream(data);
+        int result = endianUtils.readUShortLE(inputStream);
+        assertEquals(0x3412, result);
+    }
+
+    @Test
+    public void testReadUShortLEWithEmptyStream() throws IOException, TikaException {
+        InputStream inputStream = new ByteArrayInputStream(new byte[0]);
+        assertThrows(BufferUnderrunException.class, () -> endianUtils.readUShortLE(inputStream));
+    }
+
+    @Test
+    public void testReadUShortLEWithNullStream() throws IOException, TikaException {
+        InputStream inputStream = null;
+        assertThrows(NullPointerException.class, () -> endianUtils.readUShortLE(inputStream));
+    }
+}
+
+--------------------------------------------
+Error in EndianUtils_readUShortLE_2_0_Test: line 5 : cannot find symbol
+  symbol:   class InputStreamWithPosition
+  location: package org.apache.tika.io
+Error in EndianUtils_readUShortLE_2_0_Test: line 6 : cannot find symbol
+  symbol:   class BufferUnderrunException
+  location: package org.apache.tika.io
