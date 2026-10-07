@@ -145,7 +145,7 @@ Apache Tika core,org.apache.tika.io,BoundedInputStream,171,0,16,0,34,0,22,0,14,0
 Apache Tika core,org.apache.tika.io,SpoolingStrategy,117,0,18,0,31,0,17,0,8,0
 Apache Tika core,org.apache.tika.io,ByteArraySource,49,139,7,9,10,34,8,13,3,10
 Apache Tika core,org.apache.tika.io,TikaInputStream,387,410,41,35,93,107,47,37,18,28
-Apache Tika core,org.apache.tika.io,CachingInputStream,94,217,15,23,26,54,17,17,6,9
+Apache Tika core,org.apache.tika.io,CachingInputStream,89,222,14,24,24,56,16,18,6,9
 Apache Tika core,org.apache.tika.io,StreamCache.CacheInputStream,64,0,8,0,15,0,7,0,3,0
 Apache Tika core,org.apache.tika.io,EndianUtils.BufferUnderrunException,0,4,0,0,0,2,0,1,0,1
 Apache Tika core,org.apache.tika.io,TailStream,0,287,0,22,0,61,0,23,0,12

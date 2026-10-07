@@ -26,9 +26,9 @@ Toutes les mesures ci-dessous ont été refaites d'un seul coup, dans le même e
 | Méthodes, étape 1 → 4 | 4/32 → **32/32** | 13/14 → **14/14** |
 
 - **128 tests générés** par ChatUniTest (36 fichiers, 30 méthodes publiques ciblées, soit toutes celles des deux classes), intégrés après **106 corrections manuelles**, toutes marquées `// CORRECTION n` dans le code.
-- **18 tests écrits à la main** (2 fichiers).
-- Les 895 tests du module `tika-core` passent, localement et dans la GitHub Action [`tache2.yml`](.github/workflows/tache2.yml).
-- Les 11 mutants restants sont tous justifiés (section 7) : mutants équivalents, code mort, ou un mutant qui n'est tuable qu'avec un lien symbolique (le test correspondant s'exécute sous Linux).
+- **19 tests écrits à la main** (2 fichiers).
+- Les 896 tests du module `tika-core` passent, localement et dans la GitHub Action [`tache2.yml`](.github/workflows/tache2.yml).
+- Les mutants restants sont tous justifiés (section 7). Sous Windows, il en reste 11 ; dans la GitHub Action (Linux), il n'en reste que **6**, tous équivalents ou inatteignables. Quelques tests dépendent en effet du système : liens symboliques et lettres de lecteur (section 8).
 - En chemin, nous avons trouvé **deux défauts dans Tika** et un **écart entre la Javadoc et le code** (section 4.3).
 
 ---
@@ -213,7 +213,7 @@ Corriger les tests générés oblige à chercher le **vrai** comportement attend
 
 ### 4.4 Comparaison avec les tests écrits à la main (Tika)
 - Les tests originaux utilisent des **données issues du domaine** : par exemple `0xF0 0xFF 0xFF 0xFF` → `4294967280L`, qui vérifie explicitement le caractère *non signé* de `readUIntLE`. `FilenameUtilsTest` vérifie de vrais chemins malveillants (`../../../`, chemins Windows, protocoles). Le modèle n'a jamais produit ce type de cas.
-- Les tests originaux sont **peu nombreux mais ciblés**. Les tests générés sont **nombreux mais redondants** : 128 tests générés tuent 135 mutants (étapes 1 → 3), alors que 18 tests manuels en tuent 64 de plus, parmi les plus difficiles.
+- Les tests originaux sont **peu nombreux mais ciblés**. Les tests générés sont **nombreux mais redondants** : 128 tests générés tuent 135 mutants (étapes 1 → 3), alors que 19 tests manuels en tuent 64 de plus, parmi les plus difficiles.
 - Les tests originaux ne sont pas parfaits non plus : `EndianUtilsTest.testReadUIntBE` contient un **copier-coller erroné**. Sa vérification de l'exception appelle `readUIntLE` au lieu de `readUIntBE`, donc la détection de fin de flux de `readUIntBE` n'était pas testée. Nous ne l'avons pas modifié, pour garder les tests originaux intacts.
 
 ---
@@ -297,7 +297,7 @@ La passe 2 tue moins de mutants que la passe 1, alors qu'elle ajoute plus de tes
 
 ## 7. Tests ajoutés à la main
 
-Fichiers : [`EndianUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/io/EndianUtilsManualTest.java) (6 tests) et [`FilenameUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/io/FilenameUtilsManualTest.java) (12 tests). Ensemble, ils tuent les **64 mutants** qui survivaient encore à l'étape 3 (36 dans `EndianUtils`, 28 dans `FilenameUtils`).
+Fichiers : [`EndianUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/io/EndianUtilsManualTest.java) (6 tests) et [`FilenameUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/io/FilenameUtilsManualTest.java) (13 tests). Ensemble, ils tuent les **64 mutants** qui survivaient encore à l'étape 3 (36 dans `EndianUtils`, 28 dans `FilenameUtils`).
 
 Le nombre entre parenthèses est le nombre de mutants que PIT attribue au test à l'étape 4. PIT attribue chaque mutant au **premier** test qui le tue ; un test à « 0 » peut donc tuer des mutants déjà attribués à un autre test. Les tests de la première séance ont été écrits après la passe 1 : certains de leurs mutants sont maintenant aussi tués par les tests générés en passe 2.
 
@@ -356,6 +356,11 @@ Le nombre entre parenthèses est le nombre de mutants que PIT attribue au test �
 - *Données :* `A` (une lettre seule, sans `:`), `AB` (deux caractères, sans `:`), `@:` et `[:`. `@` et `[` sont les **voisins immédiats** de l'intervalle `A..Z` dans la table ASCII.
 - *Oracle :* aucune de ces chaînes n'est un lecteur (`commons-io` renvoie 0 ou -1), donc rien n'est retiré. `':'` devient `'/'`, le `'/'` final est supprimé, et l'extension par défaut `.bin` est ajoutée : `A.bin`, `AB.bin`, `@.bin`, `[.bin`. Chacun des 4 mutants « condition niée » de la ligne 323 traite une de ces chaînes comme un lecteur : il renvoie `null` ou plante (`charAt(1)` sur `A`).
 
+**`testDriveLetterBoundsAreStripped`** (0 mutant sous Windows, 2 sous Linux) — *ajouté en seconde séance*
+- *Intention :* un nom qui n'est qu'un préfixe de lecteur (`X:`) ne contient aucun nom de fichier, pour les **bornes** de l'intervalle des lettres de lecteur.
+- *Données :* `A:` et `Z:`, la première et la dernière lettre acceptées. Ce sont les seules valeurs qui distinguent `>= 'A'` de `> 'A'`, et `<= 'Z'` de `< 'Z'`.
+- *Oracle :* le préfixe est retiré, le chemin devient vide, donc `null` (même règle que ` ` dans `testDegenerateNamesReturnNull`). Sous Windows, `commons-io` reconnaît déjà le lecteur et la ligne 323 n'est pas atteinte. Sous Linux, `commons-io` renvoie 0 (pas de lettres de lecteur sous Linux) et c'est le repli de `getPrefixLength` (ligne 323) qui doit reconnaître `A:` et `Z:`. Les mutants de limite renvoient alors `A.bin` ou `Z.bin` au lieu de `null`.
+
 **`testBlankNamePartReturnsNull`** (2 mutants) — *ajouté en seconde séance*
 - *Intention :* un nom dont la partie avant l'extension est vide (après nettoyage) doit donner `null`, dans les deux méthodes.
 - *Données :* ` .pdf`, un espace suivi d'une extension valide. C'est le seul type d'entrée qui atteint les `return null` des lignes 174 et 250 : `.pdf` seul est intercepté plus tôt, car l'extension est égale au nom.
@@ -398,12 +403,14 @@ Le nombre entre parenthèses est le nombre de mutants que PIT attribue au test �
 - *Oracle :* l'extension du registre MIME de Tika (`.png`) ; la valeur par défaut si le type est absent ; `.bin` si le type n'a pas d'extension connue.
 - *Remarque :* écrit quand le test généré de `calculateExtension` avait été abandonné (passe 1). Depuis la passe 2, le test généré corrigé tue les mêmes 2 mutants.
 
-### Mutants restants (11) et justification
+### Mutants restants et justification
+
+Sous Windows, il reste **11** mutants (310/321) ; dans la GitHub Action sous Linux, il n'en reste que **6** (315/321).
 - **`EndianUtils` L362 et L388** (`int b3 = data[i++] & 0xFF;`) : l'incrément du **dernier** octet lu n'est plus utilisé ensuite. Ce sont des mutants **équivalents**, impossibles à tuer.
-- **`FilenameUtils` L156, L215, L320** (`prefixLength > 0` → `>= 0`) : avec `prefixLength = 0`, `substring(0)` renvoie la même chaîne, et `commons-io` renvoie -1 ou une valeur positive dans les autres cas. Mutants **équivalents**.
-- **`getPrefixLength` L323 (2 mutants `>=`/`<=` → `>`/`<`) et L324** : ils ne changent le résultat que pour `A:` ou `Z:`, mais `commons-io` renvoie déjà 2 pour toute chaîne `X:` à la ligne 319 : ces cas n'atteignent jamais la ligne 323. Le `return 2` de la ligne 324 est donc du **code mort**, et les deux mutants de limite sont équivalents.
+- **`FilenameUtils` L156 et L215** (`prefixLength > 0` → `>= 0`) : avec `prefixLength = 0`, `substring(0)` renvoie la même chaîne. Mutants **équivalents**.
+- **`getPrefixLength` L320, L323 (2 mutants de limite) et L324, sous Windows seulement** : sous Windows, `commons-io` renvoie déjà 2 pour toute chaîne `X:` à la ligne 319, donc le repli des lignes 323-324 n'est jamais atteint. Ces 4 mutants y sont **équivalents** (code inatteignable sous Windows). Sous Linux, `commons-io` renvoie 0 pour `C:`, et le repli est utilisé : ces 4 mutants sont tués dans la GitHub Action, par `FilenameUtilsTest.testEmbeddedFilePaths` et par notre `testDriveLetterBoundsAreStripped`. Dans une première version de ce rapport, nous avions conclu à tort que ce repli était du code mort sur tous les systèmes : c'est la mesure sous Linux qui nous a montré l'erreur.
 - **L185 et L259** (`return null` après nettoyage du nom) : la partie nom n'est pas blanche à ce moment-là (vérifié juste avant), et les remplacements suivants produisent toujours `_` ou `.`. `trim()` ne retire que les caractères ≤ espace, et `normalize` a déjà remplacé tous les caractères de contrôle. Ces lignes sont **inatteignables**.
-- **`resolveWithin` L305, seconde condition** : n'est tuable qu'avec un lien symbolique (le test existe, mais il est ignoré sous Windows ; il s'exécute dans la CI Linux).
+- **`resolveWithin` L305, seconde condition, sous Windows seulement** : n'est tuable qu'avec un lien symbolique. Le test existe, mais il est ignoré sous Windows ; dans la GitHub Action (Linux), il s'exécute et tue ce mutant.
 
 ---
 
@@ -455,7 +462,7 @@ Sous Windows (PowerShell), mettre les arguments `-D...` entre guillemets, et ajo
 |---|---|
 | `tika-core/pom.xml` | dépendances de test Mockito ; profil `tache2` (ChatUniTest + PIT) |
 | `tika-core/src/test/java/org/apache/tika/io/*_Test.java` | 36 fichiers de tests générés (corrigés), 128 tests |
-| `tika-core/src/test/java/org/apache/tika/io/*ManualTest.java` | 2 fichiers de tests écrits à la main, 18 tests |
+| `tika-core/src/test/java/org/apache/tika/io/*ManualTest.java` | 2 fichiers de tests écrits à la main, 19 tests |
 | `tika-core/chatunitest-tests/` | sortie brute de ChatUniTest (fichiers « réussis » selon l'outil) |
 | `.github/workflows/tache2.yml` | GitHub Action |
 | `tache2-rapports/mesures-java17/` | mesures finales : PIT et JaCoCo des 4 étapes, journaux, script `mesures.sh` |

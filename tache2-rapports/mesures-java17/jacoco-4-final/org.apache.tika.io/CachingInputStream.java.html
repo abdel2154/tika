@@ -59,9 +59,9 @@ class CachingInputStream extends InputStream {
 
         // Reading new byte from source
 <span class="fc" id="L61">        int b = source.read();</span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (b == -1) {</span>
-<span class="nc" id="L63">            sourceExhausted = true;</span>
-<span class="nc" id="L64">            return -1;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (b == -1) {</span>
+<span class="fc" id="L63">            sourceExhausted = true;</span>
+<span class="fc" id="L64">            return -1;</span>
         }
 
 <span class="fc" id="L67">        cache.append(b);</span>

@@ -148,6 +148,18 @@ public class FilenameUtilsManualTest {
     }
 
     @Test
+    public void testDriveLetterBoundsAreStripped() {
+        // "A:" et "Z:" sont les bornes de l'intervalle des lettres de lecteur : le chemin n'est
+        // qu'un prefixe de lecteur, il ne reste aucun nom de fichier -> null. Sous Windows,
+        // commons-io reconnait deja le prefixe ; sous Linux, il renvoie 0 et c'est le repli de
+        // getPrefixLength (ligne 323) qui doit le reconnaitre.
+        for (String drive : new String[]{"A:", "Z:"}) {
+            assertNull(FilenameUtils.getSanitizedEmbeddedFilePath(
+                    only(TikaCoreProperties.RESOURCE_NAME_KEY, drive), ".bin", 50), drive);
+        }
+    }
+
+    @Test
     public void testResolveWithinExistingAndMissingFiles(@TempDir Path dir) throws IOException {
         // fichier reel a l'interieur du dossier : il est accepte et renvoye tel quel
         Files.createFile(dir.resolve("inside.txt"));

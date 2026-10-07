@@ -120,17 +120,17 @@
 [INFO] Adding org.pitest:pitest to SUT classpath
 [INFO] Mutating from C:\Users\roust\tika\tika-core\target\classes
 [INFO] Replacing properties in argLine -Xmx4g -Djava.awt.headless=true @{surefireArgLine}
-03 h 06 min 59 s PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
-03 h 06 min 59 s PIT >> INFO : Created 2 mutation test units in pre scan
-03 h 07 min 00 s PIT >> INFO : Sending 62 test classes to minion
-03 h 07 min 00 s PIT >> INFO : Sent tests to minion
-/-\|/03 h 07 min 01 s PIT >> INFO : MINION : OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
--\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/03 h 07 min 10 s PIT >> INFO : Calculated coverage in 10 seconds.
-03 h 07 min 10 s PIT >> INFO : 0 tests took longer than 2000 ms
-03 h 07 min 10 s PIT >> INFO : Slowest test ([engine:junit-jupiter]/[class:org.apache.tika.io.EndianUtils_getIntBE_23_0_Test]/[method:testGetIntBEWithOffset()]) took 1267 ms
-03 h 07 min 10 s PIT >> INFO : Largest test ([engine:junit-jupiter]/[class:org.apache.tika.io.FilenameUtilsTest]/[method:testEmbeddedFilePaths()]) covered 179 blocks
-03 h 07 min 10 s PIT >> INFO : Created 2 mutation test units
-/-03 h 07 min 30 s PIT >> INFO : Completed in 30 seconds
+13 h 27 min 43 s PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
+13 h 27 min 43 s PIT >> INFO : Created 2 mutation test units in pre scan
+13 h 27 min 44 s PIT >> INFO : Sending 62 test classes to minion
+13 h 27 min 44 s PIT >> INFO : Sent tests to minion
+/-\|/13 h 27 min 46 s PIT >> INFO : MINION : OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-13 h 27 min 55 s PIT >> INFO : Calculated coverage in 11 seconds.
+13 h 27 min 55 s PIT >> INFO : 0 tests took longer than 2000 ms
+13 h 27 min 55 s PIT >> INFO : Slowest test ([engine:junit-jupiter]/[class:org.apache.tika.io.EndianUtils_getIntBE_23_0_Test]/[method:testGetIntBEWithOffset()]) took 1483 ms
+13 h 27 min 55 s PIT >> INFO : Largest test ([engine:junit-jupiter]/[class:org.apache.tika.io.FilenameUtilsTest]/[method:testEmbeddedFilePaths()]) covered 179 blocks
+13 h 27 min 55 s PIT >> INFO : Created 2 mutation test units
+/-13 h 28 min 14 s PIT >> INFO : Completed in 30 seconds
 ================================================================================
 - Mutators
 ================================================================================
@@ -181,14 +181,14 @@
 ================================================================================
 > pre-scan for mutations : < 1 second
 > scan classpath : < 1 second
-> coverage and dependency analysis : 10 seconds
+> coverage and dependency analysis : 11 seconds
 > build mutation tests : < 1 second
-> run mutation analysis : 19 seconds
+> run mutation analysis : 18 seconds
 --------------------------------------------------------------------------------
 > Total  : 30 seconds
 --------------------------------------------------------------------------------
 > 0 tests took longer than 2000 ms
-> Slowest test ([engine:junit-jupiter]/[class:org.apache.tika.io.EndianUtils_getIntBE_23_0_Test]/[method:testGetIntBEWithOffset()]) took 1267 ms
+> Slowest test ([engine:junit-jupiter]/[class:org.apache.tika.io.EndianUtils_getIntBE_23_0_Test]/[method:testGetIntBEWithOffset()]) took 1483 ms
 > Largest test ([engine:junit-jupiter]/[class:org.apache.tika.io.FilenameUtilsTest]/[method:testEmbeddedFilePaths()]) covered 179 blocks
 ================================================================================
 - Statistics
@@ -197,11 +197,11 @@
 >> 62 tests examined
 >> Generated 321 mutations Killed 310 (97%)
 >> Mutations with no coverage 3. Test strength 97%
->> Ran 592 tests (1.84 tests per mutation)
+>> Ran 605 tests (1.88 tests per mutation)
 Enhanced functionality available at https://www.arcmutate.com/
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  36.887 s
-[INFO] Finished at: 2026-10-07T03:07:30-04:00
+[INFO] Total time:  38.476 s
+[INFO] Finished at: 2026-10-07T13:28:14-04:00
 [INFO] ------------------------------------------------------------------------

@@ -72,207 +72,207 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running org.apache.tika.config.ParseContextConfigTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in org.apache.tika.config.ParseContextConfigTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.138 s -- in org.apache.tika.config.ParseContextConfigTest
 [INFO] Running org.apache.tika.config.TikaExtrasTest
-INFO  [main] 03:13:53,590 org.apache.tika.config.TikaExtras tika.extras.dir: loaded 1 extra jar(s): [C:\Users\roust\AppData\Local\Temp\junit-16608686036260611109\extra.jar]
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.800 s -- in org.apache.tika.config.TikaExtrasTest
+INFO  [main] 13:28:30,367 org.apache.tika.config.TikaExtras tika.extras.dir: loaded 1 extra jar(s): [C:\Users\roust\AppData\Local\Temp\junit-386122755207968350\extra.jar]
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.873 s -- in org.apache.tika.config.TikaExtrasTest
 [INFO] Running org.apache.tika.config.TikaProgressTrackerTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.138 s -- in org.apache.tika.config.TikaProgressTrackerTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.131 s -- in org.apache.tika.config.TikaProgressTrackerTest
 [INFO] Running org.apache.tika.detect.BOMDetectorTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.332 s -- in org.apache.tika.detect.BOMDetectorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.355 s -- in org.apache.tika.detect.BOMDetectorTest
 [INFO] Running org.apache.tika.detect.CharsetSupersetsTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in org.apache.tika.detect.CharsetSupersetsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in org.apache.tika.detect.CharsetSupersetsTest
 [INFO] Running org.apache.tika.detect.FileCommandDetectorTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.562 s -- in org.apache.tika.detect.FileCommandDetectorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.057 s -- in org.apache.tika.detect.FileCommandDetectorTest
 [INFO] Running org.apache.tika.detect.HighByteLetterStatsTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in org.apache.tika.detect.HighByteLetterStatsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in org.apache.tika.detect.HighByteLetterStatsTest
 [INFO] Running org.apache.tika.detect.MagicDetectorTest
-[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.158 s -- in org.apache.tika.detect.MagicDetectorTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 s -- in org.apache.tika.detect.MagicDetectorTest
 [INFO] Running org.apache.tika.detect.MetadataCharsetDetectorTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in org.apache.tika.detect.MetadataCharsetDetectorTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.detect.MetadataCharsetDetectorTest
 [INFO] Running org.apache.tika.detect.MimeDetectionWithNNTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.165 s -- in org.apache.tika.detect.MimeDetectionWithNNTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.146 s -- in org.apache.tika.detect.MimeDetectionWithNNTest
 [INFO] Running org.apache.tika.detect.NameDetectorTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.detect.NameDetectorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.detect.NameDetectorTest
 [INFO] Running org.apache.tika.detect.TextDetectorTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.detect.TextDetectorTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.detect.TextDetectorTest
 [INFO] Running org.apache.tika.detect.TypeDetectorTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.detect.TypeDetectorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.detect.TypeDetectorTest
 [INFO] Running org.apache.tika.detect.ZeroSizeFileDetectorTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.detect.ZeroSizeFileDetectorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.detect.ZeroSizeFileDetectorTest
 [INFO] Running org.apache.tika.digest.InputStreamDigesterTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.digest.InputStreamDigesterTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.digest.InputStreamDigesterTest
 [INFO] Running org.apache.tika.extractor.EmbeddedDocumentUtilExtensionTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in org.apache.tika.extractor.EmbeddedDocumentUtilExtensionTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in org.apache.tika.extractor.EmbeddedDocumentUtilExtensionTest
 [INFO] Running org.apache.tika.io.EndianUtilsManualTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in org.apache.tika.io.EndianUtilsManualTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.io.EndianUtilsManualTest
 [INFO] Running org.apache.tika.io.EndianUtilsTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.io.EndianUtilsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.EndianUtilsTest
 [INFO] Running org.apache.tika.io.EndianUtils_getIntBE_23_0_Test
 OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.714 s -- in org.apache.tika.io.EndianUtils_getIntBE_23_0_Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.771 s -- in org.apache.tika.io.EndianUtils_getIntBE_23_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getIntLE_20_0_Test
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.io.EndianUtils_getIntLE_20_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getIntLE_21_0_Test
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.io.EndianUtils_getIntLE_21_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getLongLE_28_0_Test
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in org.apache.tika.io.EndianUtils_getLongLE_28_0_Test
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in org.apache.tika.io.EndianUtils_getLongLE_28_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getShortBE_16_0_Test
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.io.EndianUtils_getShortBE_16_0_Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.io.EndianUtils_getShortBE_16_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getShortBE_17_0_Test
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.io.EndianUtils_getShortBE_17_0_Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.io.EndianUtils_getShortBE_17_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getShortLE_12_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.EndianUtils_getShortLE_12_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getShortLE_13_0_Test
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.io.EndianUtils_getShortLE_13_0_Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.io.EndianUtils_getShortLE_13_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUByte_30_0_Test
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.io.EndianUtils_getUByte_30_0_Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.io.EndianUtils_getUByte_30_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUIntBE_26_0_Test
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.EndianUtils_getUIntBE_26_0_Test
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_getUIntBE_26_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUIntBE_27_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_getUIntBE_27_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUIntLE_24_0_Test
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.io.EndianUtils_getUIntLE_24_0_Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.io.EndianUtils_getUIntLE_24_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUShortBE_18_0_Test
 [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.io.EndianUtils_getUShortBE_18_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUShortBE_19_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_getUShortBE_19_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUShortLE_14_0_Test
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_getUShortLE_14_0_Test
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.io.EndianUtils_getUShortLE_14_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_getUShortLE_15_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.EndianUtils_getUShortLE_15_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readIntBE_7_0_Test
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.io.EndianUtils_readIntBE_7_0_Test
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.io.EndianUtils_readIntBE_7_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readIntLE_6_0_Test
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.093 s -- in org.apache.tika.io.EndianUtils_readIntLE_6_0_Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 s -- in org.apache.tika.io.EndianUtils_readIntLE_6_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readIntME_8_0_Test
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.io.EndianUtils_readIntME_8_0_Test
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.io.EndianUtils_readIntME_8_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readLongBE_10_0_Test
 [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.io.EndianUtils_readLongBE_10_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readLongLE_9_0_Test
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.io.EndianUtils_readLongLE_9_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readShortBE_1_0_Test
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in org.apache.tika.io.EndianUtils_readShortBE_1_0_Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.io.EndianUtils_readShortBE_1_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readShortLE_0_0_Test
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in org.apache.tika.io.EndianUtils_readShortLE_0_0_Test
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in org.apache.tika.io.EndianUtils_readShortLE_0_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readUE7_11_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_readUE7_11_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readUIntBE_5_0_Test
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in org.apache.tika.io.EndianUtils_readUIntBE_5_0_Test
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in org.apache.tika.io.EndianUtils_readUIntBE_5_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readUIntLE_4_0_Test
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.io.EndianUtils_readUIntLE_4_0_Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.EndianUtils_readUIntLE_4_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readUShortBE_3_0_Test
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_readUShortBE_3_0_Test
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in org.apache.tika.io.EndianUtils_readUShortBE_3_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_readUShortLE_2_0_Test
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in org.apache.tika.io.EndianUtils_readUShortLE_2_0_Test
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.io.EndianUtils_readUShortLE_2_0_Test
 [INFO] Running org.apache.tika.io.EndianUtils_ubyteToInt_29_0_Test
 [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.EndianUtils_ubyteToInt_29_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtilsManualTest
-[WARNING] Tests run: 12, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.059 s -- in org.apache.tika.io.FilenameUtilsManualTest
+[WARNING] Tests run: 13, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.074 s -- in org.apache.tika.io.FilenameUtilsManualTest
 [INFO] Running org.apache.tika.io.FilenameUtilsTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in org.apache.tika.io.FilenameUtilsTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in org.apache.tika.io.FilenameUtilsTest
 [INFO] Running org.apache.tika.io.FilenameUtils_calculateExtension_10_0_Test
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.io.FilenameUtils_calculateExtension_10_0_Test
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in org.apache.tika.io.FilenameUtils_calculateExtension_10_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_getName_1_0_Test
 [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.io.FilenameUtils_getName_1_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFileName_3_0_Test
-[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.180 s -- in org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFileName_3_0_Test
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 s -- in org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFileName_3_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFilePath_4_0_Test
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFilePath_4_0_Test
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.io.FilenameUtils_getSanitizedEmbeddedFilePath_4_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_getSuffixFromPath_2_0_Test
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.io.FilenameUtils_getSuffixFromPath_2_0_Test
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in org.apache.tika.io.FilenameUtils_getSuffixFromPath_2_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_normalize_0_0_Test
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.io.FilenameUtils_normalize_0_0_Test
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.io.FilenameUtils_normalize_0_0_Test
 [INFO] Running org.apache.tika.io.FilenameUtils_resolveWithin_5_0_Test
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.120 s -- in org.apache.tika.io.FilenameUtils_resolveWithin_5_0_Test
 [INFO] Running org.apache.tika.io.LookaheadInputStreamTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.io.LookaheadInputStreamTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.io.LookaheadInputStreamTest
 [INFO] Running org.apache.tika.io.TailStreamTest
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in org.apache.tika.io.TailStreamTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in org.apache.tika.io.TailStreamTest
 [INFO] Running org.apache.tika.io.TemporaryResourcesTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.io.TemporaryResourcesTest
 [INFO] Running org.apache.tika.io.TikaInputStreamTest
-[WARNING] Tests run: 102, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 6.157 s -- in org.apache.tika.io.TikaInputStreamTest
+[WARNING] Tests run: 102, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 8.083 s -- in org.apache.tika.io.TikaInputStreamTest
 [INFO] Running org.apache.tika.language.detect.LanguageNamesTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.language.detect.LanguageNamesTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.language.detect.LanguageNamesTest
 [INFO] Running org.apache.tika.metadata.filter.LegacyKeyMigrationFilterTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in org.apache.tika.metadata.filter.LegacyKeyMigrationFilterTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in org.apache.tika.metadata.filter.LegacyKeyMigrationFilterTest
 [INFO] Running org.apache.tika.metadata.MetadataInternalKeyGuardTest
-[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.metadata.MetadataInternalKeyGuardTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.metadata.MetadataInternalKeyGuardTest
 [INFO] Running org.apache.tika.metadata.TestMetadata
-[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.182 s -- in org.apache.tika.metadata.TestMetadata
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.228 s -- in org.apache.tika.metadata.TestMetadata
 [INFO] Running org.apache.tika.metadata.TestPageAnchoring
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.metadata.TestPageAnchoring
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in org.apache.tika.metadata.TestPageAnchoring
 [INFO] Running org.apache.tika.mime.CustomReaderTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.mime.CustomReaderTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.mime.CustomReaderTest
 [INFO] Running org.apache.tika.mime.MediaTypeTest
 [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.mime.MediaTypeTest
 [INFO] Running org.apache.tika.mime.MimeDetectionTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.350 s -- in org.apache.tika.mime.MimeDetectionTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.351 s -- in org.apache.tika.mime.MimeDetectionTest
 [INFO] Running org.apache.tika.mime.MimeTypesReaderTest
-[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.228 s -- in org.apache.tika.mime.MimeTypesReaderTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.238 s -- in org.apache.tika.mime.MimeTypesReaderTest
 [INFO] Running org.apache.tika.mime.PatternsTest
 [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.mime.PatternsTest
 [INFO] Running org.apache.tika.mime.ProbabilisticMimeDetectionTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.245 s -- in org.apache.tika.mime.ProbabilisticMimeDetectionTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.247 s -- in org.apache.tika.mime.ProbabilisticMimeDetectionTest
 [INFO] Running org.apache.tika.mime.RFC822DetectionTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in org.apache.tika.mime.RFC822DetectionTest
 [INFO] Running org.apache.tika.parser.CompositeParserTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in org.apache.tika.parser.CompositeParserTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in org.apache.tika.parser.CompositeParserTest
 [INFO] Running org.apache.tika.parser.mock.MockParserTest
-INFO  [pool-6-thread-1] 03:14:05,128 com.martensigwart.fakeload.DefaultFakeLoadExecutor FakeLoad execution started
-INFO  [pool-8-thread-1] 03:14:05,253 com.martensigwart.fakeload.DefaultFakeLoadExecutor FakeLoad execution finished
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.200 s -- in org.apache.tika.parser.mock.MockParserTest
+INFO  [pool-6-thread-1] 13:28:44,474 com.martensigwart.fakeload.DefaultFakeLoadExecutor FakeLoad execution started
+INFO  [pool-8-thread-1] 13:28:44,591 com.martensigwart.fakeload.DefaultFakeLoadExecutor FakeLoad execution finished
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.192 s -- in org.apache.tika.parser.mock.MockParserTest
 [INFO] Running org.apache.tika.parser.multiple.MultipleParserTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in org.apache.tika.parser.multiple.MultipleParserTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in org.apache.tika.parser.multiple.MultipleParserTest
 [INFO] Running org.apache.tika.parser.ParseContextTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.apache.tika.parser.ParseContextTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.parser.ParseContextTest
 [INFO] Running org.apache.tika.parser.ParserDecoratorTest
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.parser.ParserDecoratorTest
 [INFO] Running org.apache.tika.parser.RegexCaptureParserTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.parser.RegexCaptureParserTest
 [INFO] Running org.apache.tika.sax.BasicContentHandlerFactoryTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in org.apache.tika.sax.BasicContentHandlerFactoryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in org.apache.tika.sax.BasicContentHandlerFactoryTest
 [INFO] Running org.apache.tika.sax.BodyContentHandlerTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.sax.BodyContentHandlerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.sax.BodyContentHandlerTest
 [INFO] Running org.apache.tika.sax.CustomErrorHandlerTest
 [WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in org.apache.tika.sax.CustomErrorHandlerTest
 [INFO] Running org.apache.tika.sax.LinkContentHandlerTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in org.apache.tika.sax.LinkContentHandlerTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.apache.tika.sax.LinkContentHandlerTest
 [INFO] Running org.apache.tika.sax.OfflineContentHandlerTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.sax.OfflineContentHandlerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.sax.OfflineContentHandlerTest
 [INFO] Running org.apache.tika.sax.RichTextContentHandlerTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.sax.RichTextContentHandlerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.sax.RichTextContentHandlerTest
 [INFO] Running org.apache.tika.sax.SafeContentHandlerTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.sax.SafeContentHandlerTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.sax.SafeContentHandlerTest
 [INFO] Running org.apache.tika.sax.SecureContentHandlerTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.358 s -- in org.apache.tika.sax.SecureContentHandlerTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.261 s -- in org.apache.tika.sax.SecureContentHandlerTest
 [INFO] Running org.apache.tika.sax.SerializerTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.sax.SerializerTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in org.apache.tika.sax.SerializerTest
 [INFO] Running org.apache.tika.sax.ToMarkdownContentHandlerTest
-[INFO] Tests run: 357, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.419 s -- in org.apache.tika.sax.ToMarkdownContentHandlerTest
+[INFO] Tests run: 357, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.428 s -- in org.apache.tika.sax.ToMarkdownContentHandlerTest
 [INFO] Running org.apache.tika.sax.XHTMLBalancingHandlerTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.sax.XHTMLBalancingHandlerTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.sax.XHTMLBalancingHandlerTest
 [INFO] Running org.apache.tika.sax.XHTMLContentHandlerTest
-[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.sax.XHTMLContentHandlerTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.apache.tika.sax.XHTMLContentHandlerTest
 [INFO] Running org.apache.tika.sax.xpath.XPathParserTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.apache.tika.sax.xpath.XPathParserTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.apache.tika.sax.xpath.XPathParserTest
 [INFO] Running org.apache.tika.TikaDetectionTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in org.apache.tika.TikaDetectionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in org.apache.tika.TikaDetectionTest
 [INFO] Running org.apache.tika.utils.CharsetUtilsTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in org.apache.tika.utils.CharsetUtilsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in org.apache.tika.utils.CharsetUtilsTest
 [INFO] Running org.apache.tika.utils.ConcurrentUtilsTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.utils.ConcurrentUtilsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.apache.tika.utils.ConcurrentUtilsTest
 [INFO] Running org.apache.tika.utils.RegexUtilsTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.apache.tika.utils.RegexUtilsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.apache.tika.utils.RegexUtilsTest
 [INFO] Running org.apache.tika.utils.ServiceLoaderUtilsTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.apache.tika.utils.ServiceLoaderUtilsTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.apache.tika.utils.ServiceLoaderUtilsTest
 [INFO] Running org.apache.tika.utils.XMLReaderUtilsTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.289 s -- in org.apache.tika.utils.XMLReaderUtilsTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.300 s -- in org.apache.tika.utils.XMLReaderUtilsTest
 [INFO] 
 [INFO] Results:
 [INFO] 
-[INFO] Tests run: 895, Failures: 0, Errors: 0, Skipped: 3
+[INFO] Tests run: 896, Failures: 0, Errors: 0, Skipped: 3
 [INFO] 
 [INFO] 
 [INFO] --- jacoco:0.8.15:report (report) @ tika-core ---
@@ -281,6 +281,6 @@ INFO  [pool-8-thread-1] 03:14:05,253 com.martensigwart.fakeload.DefaultFakeLoadE
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  22.830 s
-[INFO] Finished at: 2026-10-07T03:14:08-04:00
+[INFO] Total time:  27.830 s
+[INFO] Finished at: 2026-10-07T13:28:47-04:00
 [INFO] ------------------------------------------------------------------------
