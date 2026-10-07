@@ -16,6 +16,7 @@ Toutes les mesures ci-dessous ont été refaites d'un seul coup, dans le même e
 | 2. + tests ChatUniTest, passe 1 (14 méthodes) | 137/206 (**67 %**) | 73/115 (**63 %**) | 210/321 (65 %) |
 | 3. + tests ChatUniTest, passe 2 (17 autres méthodes) | 168/206 (**82 %**) | 78/115 (**68 %**) | 246/321 (77 %) |
 | 4. + tests écrits à la main | 204/206 (**99 %**) | 106/115 (**92 %**) | 310/321 (**97 %**) |
+| 4. dans la GitHub Action (Linux) | 204/206 (**99 %**) | 111/115 (**97 %**) | **315/321 (98 %)** |
 
 *Score de mutation PIT (mutants tués / mutants générés).*
 
@@ -359,7 +360,7 @@ Le nombre entre parenthèses est le nombre de mutants que PIT attribue au test �
 **`testDriveLetterBoundsAreStripped`** (0 mutant sous Windows, 2 sous Linux) — *ajouté en seconde séance*
 - *Intention :* un nom qui n'est qu'un préfixe de lecteur (`X:`) ne contient aucun nom de fichier, pour les **bornes** de l'intervalle des lettres de lecteur.
 - *Données :* `A:` et `Z:`, la première et la dernière lettre acceptées. Ce sont les seules valeurs qui distinguent `>= 'A'` de `> 'A'`, et `<= 'Z'` de `< 'Z'`.
-- *Oracle :* le préfixe est retiré, le chemin devient vide, donc `null` (même règle que ` ` dans `testDegenerateNamesReturnNull`). Sous Windows, `commons-io` reconnaît déjà le lecteur et la ligne 323 n'est pas atteinte. Sous Linux, `commons-io` renvoie 0 (pas de lettres de lecteur sous Linux) et c'est le repli de `getPrefixLength` (ligne 323) qui doit reconnaître `A:` et `Z:`. Les mutants de limite renvoient alors `A.bin` ou `Z.bin` au lieu de `null`.
+- *Oracle :* le préfixe est retiré, le chemin devient vide, donc `null` (même règle que `\u0000` dans `testDegenerateNamesReturnNull`). Sous Windows, `commons-io` reconnaît déjà le lecteur et la ligne 323 n'est pas atteinte. Sous Linux, `commons-io` renvoie 0 (pas de lettres de lecteur sous Linux) et c'est le repli de `getPrefixLength` (ligne 323) qui doit reconnaître `A:` et `Z:`. Les mutants de limite renvoient alors `A.bin` ou `Z.bin` au lieu de `null`.
 
 **`testBlankNamePartReturnsNull`** (2 mutants) — *ajouté en seconde séance*
 - *Intention :* un nom dont la partie avant l'extension est vide (après nettoyage) doit donner `null`, dans les deux méthodes.
@@ -429,9 +430,15 @@ La génération ChatUniTest n'est **pas** relancée dans la CI, car elle exige u
 
 Les workflows d'origine d'Apache Tika (builds complets multi-JDK, Docker) sont désactivés dans l'onglet *Actions* du fork, car ils ne concernent pas ce travail.
 
-**Lien vers une exécution réussie :** *(à compléter après le push)*
+**Lien vers une exécution réussie :** https://github.com/abdel2154/tika/actions/runs/37659494971
 
-Résultats attendus, d'après nos mesures locales avec la même version de Java : 895 tests, 0 échec ; 128 tests générés et 18 tests manuels ; PIT 310/321 ou plus. Sous Linux, `testResolveWithinRejectsSymlinkEscape` s'exécute et devrait tuer un mutant de plus ; certains mutants liés aux chemins Windows peuvent aussi se comporter différemment.
+Résultat de cette exécution (Ubuntu, Java 17) :
+- étape « Executer tous les tests » : `Tests run: 896, Failures: 0, Errors: 0, Skipped: 2`, puis `BUILD SUCCESS` ;
+- étape « Executer uniquement les tests ajoutes » : `Tests run: 147, Failures: 0, Errors: 0, Skipped: 0` (128 générés + 19 manuels) ;
+- étape PIT : `Generated 321 mutations Killed 315 (98%)`, `Test strength 99%`, puis `BUILD SUCCESS` ;
+- EndianUtils : 204/206 ; FilenameUtils : 111/115.
+
+Sous Linux, 5 mutants de plus que sous Windows (310/321) sont tués : le test du lien symbolique s'exécute (1 mutant de `resolveWithin`), et `commons-io` ne reconnaît pas les lettres de lecteur, ce qui rend atteignable le repli de `getPrefixLength` (4 mutants, voir section 7). Les 6 mutants restants sont ceux de la section 7 : 4 équivalents et 2 inatteignables. Les tableaux des sections 5 à 7 reprennent les mesures locales, dont les rapports complets sont dans `tache2-rapports/mesures-java17/`.
 
 ---
 
