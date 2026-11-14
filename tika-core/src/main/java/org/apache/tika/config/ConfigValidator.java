@@ -20,6 +20,9 @@ import java.nio.file.Path;
 
 import org.apache.tika.exception.TikaConfigException;
 import org.apache.tika.utils.StringUtils;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 /**
  * Utility class for validating configuration parameters.
@@ -58,5 +61,14 @@ public class ConfigValidator {
             throw new TikaConfigException(
                     "parameter '" + paramName + "' must be set in the config file");
         }
+    }
+
+    /**
+     * Calcule la valeur d'un parametre ecrit sous forme d'expression (ex: "1024 * 1024").
+     */
+    public static Object evaluateParamExpression(String expression) throws ScriptException {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("javascript");
+        return engine.eval(expression);
     }
 }
