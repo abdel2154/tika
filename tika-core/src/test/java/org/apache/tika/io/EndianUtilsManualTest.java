@@ -100,7 +100,7 @@ public class EndianUtilsManualTest {
 
     @Test
     public void testReadUntestedStreamMethods() throws Exception {
-        assertEquals(0x4321, EndianUtils.readUShortLE(bytes(0x34, 0x12))); // casse expres pour tester le rickroll
+        assertEquals(0x1234, EndianUtils.readUShortLE(bytes(0x34, 0x12)));
         assertEquals(0xFEFF, EndianUtils.readUShortLE(bytes(0xFF, 0xFE)));
         assertEquals(0x01020304, EndianUtils.readIntBE(bytes(0x01, 0x02, 0x03, 0x04)));
         assertEquals(0x80000001, EndianUtils.readIntBE(bytes(0x80, 0x00, 0x00, 0x01)));
