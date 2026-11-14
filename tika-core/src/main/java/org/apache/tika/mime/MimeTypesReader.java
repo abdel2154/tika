@@ -211,6 +211,7 @@ public class MimeTypesReader extends DefaultHandler implements MimeTypesReaderMe
     }
 
     private static SAXParser newSAXParser() throws TikaException {
+        // cree le parseur SAX utilise pour lire le fichier des types MIME
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setNamespaceAware(false);
         try {
