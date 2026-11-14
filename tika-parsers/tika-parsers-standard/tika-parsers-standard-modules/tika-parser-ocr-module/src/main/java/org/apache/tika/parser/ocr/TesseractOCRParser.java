@@ -82,6 +82,9 @@ import org.apache.tika.sax.XHTMLContentHandler;
 import org.apache.tika.utils.ProcessUtils;
 import org.apache.tika.utils.StringUtils;
 import org.apache.tika.utils.XMLReaderUtils;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
 
 /**
  * TesseractOCRParser powered by tesseract-ocr engine. To enable this parser,
@@ -827,5 +830,14 @@ public class TesseractOCRParser extends AbstractExternalProcessParser implements
         public void characters(char[] ch, int start, int length) throws SAXException {
             xhtml.characters(ch, start, length);
         }
+    }
+
+    /**
+     * Lit le fichier hOCR produit par tesseract.
+     */
+    public static Document parseHocrFile(InputStream input) throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(input);
     }
 }
