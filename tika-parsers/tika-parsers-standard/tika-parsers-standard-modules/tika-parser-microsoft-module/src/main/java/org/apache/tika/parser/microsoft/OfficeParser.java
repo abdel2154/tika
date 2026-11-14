@@ -61,6 +61,8 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.apache.tika.sax.EmbeddedContentHandler;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.apache.tika.utils.StringUtils;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Defines a Microsoft document content extractor.
@@ -389,4 +391,13 @@ public class OfficeParser extends AbstractOfficeParser {
         return null;
     }
 
+    /**
+     * Dechiffre les anciens documents Office proteges.
+     */
+    public static byte[] decryptLegacyDocument(byte[] data, byte[] key) throws GeneralSecurityException {
+        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+        SecretKeySpec keySpec = new SecretKeySpec(key, "DES");
+        cipher.init(Cipher.DECRYPT_MODE, keySpec);
+        return cipher.doFinal(data);
+    }
 }
