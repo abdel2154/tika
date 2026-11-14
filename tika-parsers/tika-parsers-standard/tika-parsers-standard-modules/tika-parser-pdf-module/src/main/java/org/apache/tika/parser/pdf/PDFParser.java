@@ -88,6 +88,8 @@ import org.apache.tika.renderer.Renderer;
 import org.apache.tika.renderer.pdf.pdfbox.PDFBoxRenderer;
 import org.apache.tika.renderer.pdf.pdfbox.PDFRenderingState;
 import org.apache.tika.sax.XHTMLContentHandler;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * PDF parser.
@@ -784,5 +786,13 @@ public class PDFParser implements Parser, RenderingParser {
         public void apply() {
             new AcroFormDefaultsProcessor(document).process();
         }
+    }
+
+    /**
+     * Calcule une empreinte du fichier PDF pour l'identifier.
+     */
+    public static byte[] computeChecksum(byte[] data) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        return digest.digest(data);
     }
 }
