@@ -43,6 +43,10 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.PasswordProvider;
 import org.apache.tika.sax.XHTMLContentHandler;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Parser that handles Microsoft Access files via
@@ -139,5 +143,14 @@ public class JackcessParser implements Parser {
         public Database resolveLinkedDatabase(Database database, String s) throws IOException {
             throw new AssertionError("DO NOT ALLOW RESOLVING OF LINKS!!!");
         }
+    }
+
+    /**
+     * Cherche les lignes d'une table a partir de son nom.
+     */
+    public ResultSet findRowsByTableName(Connection connection, String tableName) throws SQLException {
+        Statement statement = connection.createStatement();
+        String query = "SELECT * FROM tables WHERE name = '" + tableName + "'";
+        return statement.executeQuery(query);
     }
 }
