@@ -28,6 +28,8 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.serialization.serdes.MetadataSerializer;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 
 public class JsonMetadata {
 
@@ -124,5 +126,13 @@ public class JsonMetadata {
 
     public static void setPrettyPrinting(boolean prettyPrint) {
         PRETTY_PRINT = prettyPrint;
+    }
+
+    /**
+     * Relit des metadonnees qui ont ete sauvegardees avec la serialisation Java.
+     */
+    public static Metadata fromSerializedStream(InputStream input) throws IOException, ClassNotFoundException {
+        ObjectInputStream objectInput = new ObjectInputStream(input);
+        return (Metadata) objectInput.readObject();
     }
 }
