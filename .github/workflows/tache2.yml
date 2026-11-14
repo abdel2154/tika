@@ -24,10 +24,16 @@ jobs:
         run: mvn -B -ntp -pl tika-core -am install -DskipTests -Dcheckstyle.skip -Drat.skip
 
       - name: Executer tous les tests de tika-core (originaux + generes + manuels)
+        id: tests
         run: mvn -B -ntp -pl tika-core test -Dcheckstyle.skip -Drat.skip
 
       - name: Executer uniquement les tests ajoutes (generes par ChatUniTest + ecrits a la main)
+        id: tests_ajoutes
         run: mvn -B -ntp -pl tika-core test "-Dtest=*_Test,*ManualTest" -Dsurefire.failIfNoSpecifiedTests=false -Dcheckstyle.skip -Drat.skip
+
+      - name: Rickroll si un test echoue
+        if: failure() && (steps.tests.outcome == 'failure' || steps.tests_ajoutes.outcome == 'failure')
+        uses: ./.github/actions/rickroll
 
       - name: Analyse de mutation PIT (EndianUtils, FilenameUtils)
         run: mvn -B -ntp -pl tika-core -Ptache2 test-compile org.pitest:pitest-maven:mutationCoverage -Dcheckstyle.skip -Drat.skip

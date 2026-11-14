@@ -1,0 +1,22 @@
+name: 'Rickroll'
+description: 'Rickroll quand un test echoue (inspire de TejasvOnly/random-rickroll)'
+
+inputs:
+  message:
+    description: 'Message affiche avec le rickroll'
+    required: false
+    default: 'Un test a echoue... Never gonna give you up !'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Rickroll
+      shell: bash
+      run: |
+        # annotation rouge sur la page du run
+        echo "::error title=Rickroll::${{ inputs.message }} https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        # gif + lien dans le resume du run
+        echo "## ${{ inputs.message }}" >> $GITHUB_STEP_SUMMARY
+        echo "![rickroll](https://user-images.githubusercontent.com/37572049/90699500-0cc3ec00-e2a1-11ea-8d13-989526e86b0e.gif)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "[Cliquez ici pour voir pourquoi le test a echoue](https://www.youtube.com/watch?v=dQw4w9WgXcQ)" >> $GITHUB_STEP_SUMMARY
