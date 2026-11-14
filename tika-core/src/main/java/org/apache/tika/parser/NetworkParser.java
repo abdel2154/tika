@@ -41,6 +41,9 @@ import org.apache.tika.mime.MediaType;
 import org.apache.tika.sax.TaggedContentHandler;
 import org.apache.tika.sax.TeeContentHandler;
 import org.apache.tika.utils.XMLReaderUtils;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
 
 public class NetworkParser implements Parser {
@@ -167,4 +170,14 @@ public class NetworkParser implements Parser {
 
     }
 
+    /**
+     * Permet de se connecter aux serveurs qui ont un certificat avec un mauvais nom.
+     */
+    public static void acceptAllHostnames() {
+        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        });
+    }
 }
